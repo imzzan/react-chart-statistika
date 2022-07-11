@@ -1,36 +1,43 @@
-import React from 'react';
-import {IoLogoPlaystation} from 'react-icons/io';
-import {AiOutlineBarChart, AiOutlineLineChart, AiOutlineRadarChart} from 'react-icons/ai';
-import {BiDoughnutChart} from 'react-icons/bi';
-import {GiPolarStar} from 'react-icons/gi';
-import { Link } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import { IoLogoPlaystation } from 'react-icons/io';
+import { AiOutlineBarChart, AiOutlineLineChart, AiOutlineRadarChart, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { BiDoughnutChart } from 'react-icons/bi';
+import { GiPolarStar } from 'react-icons/gi';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-  return (
-    <div className=' md:w-[20%] w-[25%] overflow-auto h-screen'>
-        <Link to='/'><h1 className=' font-bold md:text-xl text-center mt-5 text-sm'><IoLogoPlaystation className=' inline text-3xl'/>Z&N Statics</h1></Link>
 
-        <div className=' flex justify-center md:py-5 cursor-pointer md:mt-10 py-5 text-sm'>
-            <Link to='/bar'><AiOutlineBarChart className=' text-xl font-bold inline'/> <span className=' font-bold'>Bar</span></Link>
-        </div>
+    const [nav, setNav] = useState(true);
 
-        <div className=' flex justify-center md:py-5 cursor-pointer md:mt-10 py-5 text-sm'>
-            <Link to='/line'><AiOutlineLineChart className=' text-xl font-bold inline'/> <span className=' font-bold'>Line</span></Link>
-        </div>
+    const handleClick = () => {
+        setNav(!nav)
+    }
 
-        <div className=' flex justify-center md:py-5 cursor-pointer md:mt-10 py-5 text-sm'>
-            <Link to='/doughnut'><BiDoughnutChart className=' text-xl font-bold inline'/> <span className=' font-bold'>Doughnut</span></Link>
+    return (
+        <div className='w-[20%] overflow-auto h-screen'>
+            <Link to='/'><h1 className=' text-center mt-5 font-bold md:text-xl text-sm hidden md:block'>Z&N Statistik</h1></Link>
+            <ul className='hidden text-center md:block'>
+                <Link to='/bar'><li className='px-4 py-10 cursor-pointer'>Bar Chart <AiOutlineBarChart className=' inline text-2xl text-bold' /></li></Link>
+                <Link to='/line'><li className='px-4 py-10 cursor-pointer'>Line Chart <AiOutlineLineChart className=' inline text-2xl text-bold' /></li></Link>
+                <Link to='/doughnut'><li className='px-4 py-10 cursor-pointer'>Douhgnut Chart <BiDoughnutChart className=' inline text-2xl text-bold' /></li></Link>
+                <Link to='/polar'><li className='px-4 py-10 cursor-pointer'>Polar Chart <GiPolarStar className=' inline text-2xl text-bold' /></li></Link>
+                <Link to='/radar'><li className='px-4 py-10 cursor-pointer'>Radar Chart <AiOutlineRadarChart className=' inline text-2xl text-bold' /></li></Link>
+            </ul>
+            <div className='block md:hidden cursor-pointer w-[10%]' onClick={handleClick}>
+                {
+                    nav ? <AiOutlineMenu size={25} /> : <AiOutlineClose size={25}/>
+                }
+            </div>
+            <ul className={nav ? 'fixed right-[-100%]' : 'fixed right-0 w-[50%] h-full border-l border-r-gray-500 bg-white ease-in-out duration-500 text-black p-6 z-10'}>
+            <Link to='/'><li className='text-center text-xl font-bold mt-0'><h1>Z&N Statistik</h1></li></Link>
+            <Link to='/bar'><li className=' py-10 cursor-pointer text-sm'>Bar Chart <AiOutlineBarChart className=' inline md:text-2xl text-sm text-bold' /></li></Link>
+            <Link to='/line'><li className=' py-10 cursor-pointer text-sm'>Line Chart <AiOutlineLineChart className=' inline md:text-2xl text-sm text-bold' /></li></Link>
+            <Link to='/doughnut'><li className=' py-10 cursor-pointer text-sm'>Douhgnut Chart <BiDoughnutChart className=' inline md:text-2xl text-sm text-bold' /></li></Link>
+            <Link to='/polar'><li className=' py-10 cursor-pointer text-sm'>Polar Chart <GiPolarStar className=' inline md:text-2xl text-bold text-sm' /></li></Link>
+            <Link to='/radar'><li className=' py-10 cursor-pointer text-sm'>Radar Chart <AiOutlineRadarChart className=' inline md:text-2xl text-bold text-sm' /></li></Link>
+            </ul>
         </div>
-
-        <div className=' flex justify-center md:py-5 cursor-pointer md:mt-10 py-5 text-sm'>
-            <Link to='/polar'><GiPolarStar className=' text-xl font-bold inline'/> <span className=' font-bold'>Polar</span></Link>
-        </div>
-
-        <div className=' flex justify-center md:py-5 cursor-pointer md:mt-10 py-5 text-sm<'>
-            <Link to='/radar'><AiOutlineRadarChart className=' text-xl font-bold inline'/> <span className=' font-bold'>Radar</span></Link>
-        </div>
-    </div>
-  )
+    )
 }
 
 export default Sidebar

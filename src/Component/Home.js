@@ -1,13 +1,15 @@
-import React, {useRef, useCallback} from 'react';
+import React, {useEffect} from 'react';
+import { getProduct, productSelectors, deleteProduct  } from '../features/ProductSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Home = ({data}) => {
+const Home = () => {
 
-  const ref = useRef(null)
-  const downloadImage = useCallback(() => {
-    const link = document.createElement('a');
-    link.download = 'table.png';
-    link.href = ref.current.toBase64Image();
-    link.click();
+  const dispatch = useDispatch();
+  const data = useSelector(productSelectors.selectAll);
+
+  useEffect(() => {
+    dispatch(getProduct());
   }, [])
 
   return (
@@ -20,6 +22,7 @@ const Home = ({data}) => {
           <th className='border border-gray-800'>Tahun</th>
           <th className='border border-gray-800'>Penjualan</th>
           <th className='border border-gray-800'>Pengeluaran</th>
+          <th className='border border-gray-800'>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -31,12 +34,14 @@ const Home = ({data}) => {
                 <td className=' border border-gray-800'>{item.tahun}</td>
                 <td className=' border border-gray-800'>Rp.{item.penjualan}</td>
                 <td className='border border-gray-800'>Rp.{item.pengeluaran}</td>
+                <th className='border border-gray-800'><button onClick={() => dispatch(deleteProduct(item.id))} className=' bg-red-600 p-1 font-normal rounded-md text-white'>Hapus</button></th>
               </tr>
             )
           })
         }
       </tbody>
     </table>
+    <Link to='/form'><button className=' bg-blue-600 p-2 text-white rounded-md'>Add Data</button></Link>
     </div>
   )
 }

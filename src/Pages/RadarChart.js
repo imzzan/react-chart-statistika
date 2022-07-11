@@ -2,10 +2,13 @@ import React, {useRef, useCallback} from 'react';
 import { Radar } from 'react-chartjs-2';
 import { Chart } from 'chart.js';
 import { CategoryScale } from 'chart.js';
+import {productSelectors} from '../features/ProductSlice';
+import { useSelector } from 'react-redux';
 
 Chart.register(CategoryScale);
-const RadarChart = ({ dataradar }) => {
+const RadarChart = () => {
 
+    const dataradar = useSelector(productSelectors.selectAll)
     const ref = useRef(null);
 
     const radardata = {
@@ -44,7 +47,7 @@ const RadarChart = ({ dataradar }) => {
 
     return (
         <div className='w-[80%] flex-1'>
-            <div className='w-1/2 mx-auto mt-5'>
+            <div className='md:w-1/2 w-full mx-auto mt-5'>
                 <Radar data={radardata} ref={ref}/>
             </div>
             <button className=' bg-blue-800 text-white px-3 md:text-lg text-sm' onClick={downloadImage}>Download</button>

@@ -2,10 +2,13 @@ import React, {useRef, useCallback} from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart } from 'chart.js';
 import { CategoryScale } from 'chart.js';
+import {productSelectors} from '../features/ProductSlice';
+import { useSelector } from 'react-redux';
 
 Chart.register(CategoryScale);
-const DoughnutChart = ({ datanut }) => {
+const DoughnutChart = () => {
 
+    const datanut = useSelector(productSelectors.selectAll)
     const ref = useRef(null);
     const ref2 = useCallback(null);
 
@@ -45,11 +48,11 @@ const DoughnutChart = ({ datanut }) => {
 
     return (
         <div className='w-[80%] flex-1'>
-            <div className='w-3/4 mx-auto mt-5'>
+            <div className='md:w-1/2 w-full mx-auto mt-5'>
                 <Doughnut data={dataPenjualan} ref={ref}/>
             </div>
             <button className=' bg-blue-800 text-white px-3 mb-5 md:text-lg text-sm' onClick={downloadImage}>Download</button>
-            <div className='w-3/4 mx-auto mt-5'>
+            <div className='md:w-1/2 w-full mx-auto mt-5'>
                 <Doughnut data={dataPengeluaran} ref={ref2}/>
             </div>
             <button className=' bg-blue-800 text-white px-3 md:text-lg text-sm' onClick={downloadImage2}>Download</button>

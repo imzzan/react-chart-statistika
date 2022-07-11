@@ -9,6 +9,7 @@ import LineChart from "./Pages/LineChart";
 import DoughnutChart from "./Pages/DoughnutChart";
 import PolarChart from "./Pages/PolarChart";
 import RadarChart from "./Pages/RadarChart";
+import AddData from "./Component/AddData";
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
     <BrowserRouter>
       <Sidebar/>
       <Routes>
-          <Route path='/' element={<Home data={Data}/>}/>
+          <Route path='/' element={<Home/>}/>
           <Route path='/bar' element={<BarChart databar={Data}/>}/>
           <Route path='/line' element={<LineChart dataline={Data}/>}/>
           <Route path="/doughnut" element={<DoughnutChart datanut={Data}/>}/>
           <Route path="/polar" element={<PolarChart datapie={Data}/>}/>
           <Route path='/radar' element={<RadarChart dataradar={Data}/>}/>
+          <Route path='/form' element={<AddData/>}/>
       </Routes>
     </BrowserRouter>
     </div>

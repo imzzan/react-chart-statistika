@@ -1,0 +1,28 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "tahun": 2000,
+      "penjualan": 19000,
+      "pengeluaran": 9500
+    },
+    {
+      "id": 2,
+      "tahun": 2001,
+      "penjualan": 22000,
+      "pengeluaran": 11000
+    },
+    {
+      "tahun": "2002",
+      "penjualan": "28000",
+      "pengeluaran": "8700",
+      "id": 3
+    },
+    {
+      "tahun": "2003",
+      "penjualan": "20000",
+      "pengeluaran": "9000",
+      "id": 4
+    }
+  ]
+}

@@ -2,10 +2,13 @@ import React, { useRef, useCallback } from 'react';
 import { Chart } from 'chart.js';
 import { CategoryScale } from 'chart.js';
 import {Bar} from 'react-chartjs-2';
+import {productSelectors} from '../features/ProductSlice';
+import { useSelector } from 'react-redux';
 
 Chart.register(CategoryScale);
-const BarChart = ({databar}) => {
+const BarChart = () => {
 
+  const databar = useSelector(productSelectors.selectAll)
   const ref = useRef(null);
   const ref2 = useRef(null);
 
@@ -46,12 +49,12 @@ const BarChart = ({databar}) => {
   }, [])
 
   return (
-    <div className='w-[80%] flex-1'>
-      <div className=' w-3/4 mx-auto mt-5'>
+    <div className='w-[100%] flex-1'>
+      <div className=' md:w-1/2 w-full mx-auto mt-5'>
         <Bar data={BarData} ref={ref}/>
       </div>
       <button className=' bg-blue-800 text-white px-3 md:text-lg text-sm' onClick={downloadImage}>Download</button>
-      <div className=' w-3/4 mx-auto mt-10'>
+      <div className=' md:w-1/2 w-full mx-auto mt-10'>
         <Bar data={BarPengeluaran} ref={ref2}/>
       </div>
       <button className=' bg-blue-800 text-white px-3 md:text-lg text-sm' onClick={downloadImage2}>Download</button>

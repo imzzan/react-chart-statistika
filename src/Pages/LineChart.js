@@ -1,10 +1,11 @@
 import React, {useRef, useCallback} from 'react';
-import {Chart} from 'chart.js';
-import {CategoryScale} from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import {productSelectors} from '../features/ProductSlice';
+import { useSelector } from 'react-redux';
 
-const LineChart = ({dataline}) => {
+const LineChart = () => {
 
+    const dataline = useSelector(productSelectors.selectAll)
     const ref = useRef(null);
     const ref2 = useRef(null);
 
@@ -26,7 +27,7 @@ const LineChart = ({dataline}) => {
         labels : dataline.map((item) => item.tahun),
         datasets : [
             {
-                label : 'Data Penjualan',
+                label : 'Data Pengeluaran',
                 data : dataline.map((item) => item.pengeluaran),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -52,11 +53,11 @@ const LineChart = ({dataline}) => {
 
   return (
     <div className='w-[80%] flex-1'>
-        <div className='w-3/4 mx-auto mt-5'>
+        <div className='md:w-1/2 w-full mx-auto mt-5'>
             <Line data={LinePenjualan} ref={ref}/>
         </div>
         <button className=' bg-blue-800 text-white px-3 mb-5 md:text-lg text-sm' onClick={downloadImage}>Download</button>
-        <div className='w-3/4 mx-auto mt-5'>
+        <div className='md:w-1/2 w-full mx-auto mt-5'>
             <Line data={LinePengeluaran} ref={ref2}/>
         </div>
         <button className=' bg-blue-800 text-white px-3 md:text-lg text-sm' onClick={downloadImage2}>Download</button>
