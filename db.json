@@ -23,6 +23,12 @@
       "penjualan": "20000",
       "pengeluaran": "9000",
       "id": 4
+    },
+    {
+      "tahun": "2004",
+      "penjualan": "676767",
+      "pengeluaran": "8787",
+      "id": 5
     }
   ]
 }
